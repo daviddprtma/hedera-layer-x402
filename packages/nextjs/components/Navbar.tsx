@@ -18,20 +18,7 @@ export default function Navbar() {
     }}>
       <div className="container flex justify-between items-center">
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <div style={{
-            width: "32px",
-            height: "32px",
-            borderRadius: "8px",
-            background: "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#000",
-            fontWeight: "bold",
-            fontFamily: "var(--font-display)"
-          }}>
-            L
-          </div>
+          <img src="/logo.png" alt="Layer402 Logo" style={{ width: "32px", height: "32px", borderRadius: "8px", objectFit: "cover" }} />
           <span style={{ 
             fontFamily: "var(--font-display)", 
             fontSize: "1.25rem", 
