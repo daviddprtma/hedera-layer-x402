@@ -1,0 +1,25 @@
+{
+  "name": "hedera-layer402",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "facilitator"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run --workspace=facilitator dev\" \"npm run --workspace=@layer402/nextjs dev\"",
+    "build": "npm run --workspace=facilitator build && npm run --workspace=@layer402/nextjs build",
+    "facilitator:dev": "npm run --workspace=facilitator dev",
+    "facilitator:start": "npm run --workspace=facilitator start",
+    "next:dev": "npm run --workspace=@layer402/nextjs dev",
+    "next:build": "npm run --workspace=@layer402/nextjs build",
+    "next:start": "npm run --workspace=@layer402/nextjs start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "next": "^14.2.35"
+  }
+}
