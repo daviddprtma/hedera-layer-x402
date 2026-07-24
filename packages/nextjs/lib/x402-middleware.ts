@@ -131,7 +131,21 @@ export function requirePayment(
     const url = new URL(req.url);
     const resource = url.pathname;
 
+    if (!PAY_TO_ACCOUNT) {
+      return new Response(
+        JSON.stringify({ error: 'Server configuration error: PAY_TO_ACCOUNT is missing in environment variables.' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
     const challenge = await buildPaymentChallenge(resource, config);
+    if (!challenge.extra?.feePayer) {
+      return new Response(
+        JSON.stringify({ error: 'Server configuration error: Facilitator is not running or did not provide a feePayer.' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
     const paymentSig = req.headers.get('payment-signature');
 
     // No payment provided — issue 402 challenge

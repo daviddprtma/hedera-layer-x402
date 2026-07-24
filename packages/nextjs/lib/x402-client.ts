@@ -78,13 +78,33 @@ export async function createPaymentSignature(
   }
 
   const client = Client.forTestnet();
-  const operatorId = AccountId.fromString(wallet.accountId);
-  const operatorKey = PrivateKey.fromStringECDSA(wallet.privateKey);
+  let operatorId: AccountId;
+  let operatorKey: PrivateKey;
+  try {
+    operatorId = AccountId.fromString(wallet.accountId);
+    operatorKey = PrivateKey.fromStringECDSA(wallet.privateKey);
+  } catch (err: any) {
+    throw new Error(`Invalid demo wallet credentials: ${err.message}`);
+  }
   client.setOperator(operatorId, operatorKey);
 
   const amountTinybars = parseInt(challenge.maxAmountRequired, 10);
-  const feePayer = AccountId.fromString(challenge.extra.feePayer);
-  const payTo = AccountId.fromString(challenge.payTo);
+  
+  let feePayer: AccountId;
+  try {
+    if (!challenge.extra?.feePayer) throw new Error("empty feePayer");
+    feePayer = AccountId.fromString(challenge.extra.feePayer);
+  } catch (err: any) {
+    throw new Error(`Invalid feePayer in challenge. Is the facilitator running? (${err.message})`);
+  }
+
+  let payTo: AccountId;
+  try {
+    if (!challenge.payTo) throw new Error("empty payTo");
+    payTo = AccountId.fromString(challenge.payTo);
+  } catch (err: any) {
+    throw new Error(`Invalid payTo in challenge. Is PAY_TO_ACCOUNT set in server .env? (${err.message})`);
+  }
 
   // Generate a TransactionId for the feePayer so they are charged the transaction fee.
   // Subtract 15 seconds to prevent INVALID_TRANSACTION_START if local clock is slightly ahead of Hedera consensus nodes.
