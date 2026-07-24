@@ -39,7 +39,7 @@ export default function Home() {
             <Link href="/playground" className="btn btn-primary" style={{ fontSize: "1.125rem", padding: "16px 32px" }}>
               Try Live Demo
             </Link>
-            <a href="https://github.com" target="_blank" className="btn btn-outline" style={{ fontSize: "1.125rem", padding: "16px 32px" }}>
+            <a href="https://github.com/daviddprtma/hedera-layer-x402" target="_blank" className="btn btn-outline" style={{ fontSize: "1.125rem", padding: "16px 32px" }}>
               View Documentation
             </a>
           </div>
