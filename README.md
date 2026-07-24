@@ -75,6 +75,6 @@ This repository is a monorepo containing two main packages:
 ## 📹 Demo Video
 Here's the demo video for this project: 
 <br> 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi//0.jpg)]()
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/fdMM_DFi8W4/0.jpg)](https://www.youtube.com/watch?v=fdMM_DFi8W4)
 
 ---
